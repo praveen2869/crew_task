@@ -8,6 +8,15 @@ import streamlit as st
 # Ensure root directory is on python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+# Sync Streamlit Cloud secrets to os.environ so Pydantic Settings loads them
+try:
+    if hasattr(st, "secrets"):
+        for k, v in st.secrets.items():
+            if isinstance(v, (str, int, float, bool)) and k not in os.environ:
+                os.environ[k] = str(v)
+except Exception:
+    pass
+
 from app.core.config import get_settings
 from app.services.rag_service import RAGService
 from app.models.query import QueryResponse, Citation
