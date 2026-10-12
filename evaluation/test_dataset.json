@@ -1,0 +1,112 @@
+[
+  {
+    "id": "eval-01",
+    "category": "answerable",
+    "query": "What is the mandatory log retention period for Tier 1 High Risk AI systems according to the Acme AI governance policy?",
+    "expected_sources": ["acme_ai_governance_policy.md"],
+    "key_facts": ["365", "retention", "Tier 1"],
+    "is_answerable": true,
+    "description": "Direct single-chunk factual retrieval from Markdown document"
+  },
+  {
+    "id": "eval-02",
+    "category": "answerable",
+    "query": "What is the primary VPC CIDR block and the failover VPC CIDR block defined in the cloud infrastructure specification?",
+    "expected_sources": ["cloud_infrastructure_spec.txt"],
+    "key_facts": ["10.100.0.0/16", "10.200.0.0/16"],
+    "is_answerable": true,
+    "description": "Network CIDR retrieval from plain text architecture specification"
+  },
+  {
+    "id": "eval-03",
+    "category": "answerable",
+    "query": "What is the maximum initial response SLA for Severity 1 security incidents in the enterprise security guide?",
+    "expected_sources": ["enterprise_security_guide.pdf"],
+    "expected_page": 3,
+    "key_facts": ["15 minutes"],
+    "is_answerable": true,
+    "description": "Page-specific numerical SLA extraction from PDF"
+  },
+  {
+    "id": "eval-04",
+    "category": "answerable",
+    "query": "How often must production service API keys be rotated, and when are they automatically deactivated?",
+    "expected_sources": ["enterprise_security_guide.pdf"],
+    "expected_page": 2,
+    "key_facts": ["30 days", "45 days"],
+    "is_answerable": true,
+    "description": "Lifecycle rule extraction from Chapter 2 of PDF"
+  },
+  {
+    "id": "eval-05",
+    "category": "answerable",
+    "query": "What are the replica count, memory allocation, and port numbers for the Qdrant cluster in the infrastructure spec?",
+    "expected_sources": ["cloud_infrastructure_spec.txt"],
+    "key_facts": ["3 nodes", "16 GB RAM", "6333", "6334"],
+    "is_answerable": true,
+    "description": "Hardware and network specifications for vector store"
+  },
+  {
+    "id": "eval-06",
+    "category": "unanswerable",
+    "query": "What is the annual compensation salary band for Senior AI Engineers at Acme Corp?",
+    "expected_sources": [],
+    "key_facts": ["sufficient information", "unavailable"],
+    "is_answerable": false,
+    "description": "Out-of-domain compensation query testing refusal"
+  },
+  {
+    "id": "eval-07",
+    "category": "unanswerable",
+    "query": "What is the company policy regarding quantum computing post-quantum cryptography algorithms for employee laptops?",
+    "expected_sources": [],
+    "key_facts": ["sufficient information", "unavailable"],
+    "is_answerable": false,
+    "description": "Plausible but unmentioned technical topic testing hallucination avoidance"
+  },
+  {
+    "id": "eval-08",
+    "category": "unanswerable",
+    "query": "Which database engine is used for PostgreSQL database clustering in the staging VPC?",
+    "expected_sources": [],
+    "key_facts": ["sufficient information", "unavailable"],
+    "is_answerable": false,
+    "description": "Infra question referencing nonexistent PostgreSQL docs in spec"
+  },
+  {
+    "id": "eval-09",
+    "category": "unanswerable",
+    "query": "What brand of espresso coffee machine is installed in the engineering breakroom?",
+    "expected_sources": [],
+    "key_facts": ["sufficient information", "unavailable"],
+    "is_answerable": false,
+    "description": "Completely off-topic query verifying strict refusal"
+  },
+  {
+    "id": "eval-10",
+    "category": "multi_hop",
+    "query": "Compare the audit frequencies and retention periods between Tier 1 AI systems in the AI policy and SOC 2 audits in the security guide.",
+    "expected_sources": ["acme_ai_governance_policy.md", "enterprise_security_guide.pdf"],
+    "key_facts": ["quarterly", "365", "bi-annually", "7 years"],
+    "is_answerable": true,
+    "description": "Cross-document synthesis across policy markdown and security PDF"
+  },
+  {
+    "id": "eval-11",
+    "category": "multi_hop",
+    "query": "What are the rotation schedules and obsolescence lifecycles for both SSL certificates in cloud infra and legacy AI model checkpoints in the AI policy?",
+    "expected_sources": ["cloud_infrastructure_spec.txt", "acme_ai_governance_policy.md"],
+    "key_facts": ["90 days", "45 calendar days", "180 days"],
+    "is_answerable": true,
+    "description": "Multi-source timeline synthesis between txt and md documents"
+  },
+  {
+    "id": "eval-12",
+    "category": "multi_hop",
+    "query": "What symmetric encryption algorithm is approved for data at rest in the security guide, and what storage volume type is specified for Qdrant in the cloud spec?",
+    "expected_sources": ["enterprise_security_guide.pdf", "cloud_infrastructure_spec.txt"],
+    "key_facts": ["AES-256", "GCM", "500 GB", "NVMe"],
+    "is_answerable": true,
+    "description": "Multi-source synthesis extracting cryptographic requirements and vector storage specs"
+  }
+]
